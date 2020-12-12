@@ -1,0 +1,18 @@
+{
+  "include": ["src/**/*", "src/node_modules/**/*"],
+  "compilerOptions": {
+    "lib": ["ESNEXT"],
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "module": "ESNEXT",
+    "moduleResolution": "node",
+    "target": "ESNEXT",
+    "typeRoots": ["typings"],
+    "types": ["node", "express"],
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "outDir": "dist"
+  }
+}
