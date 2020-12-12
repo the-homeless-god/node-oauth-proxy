@@ -1,12 +1,13 @@
-import express from "express";
+import express, { Application, Router } from "express";
 import passport from "passport";
+
 import { initLoginCallbackRoute, initLoginRoute } from "./routes/login";
 import { initLogoutRoute } from "./routes/logout";
 import { initRootRoute } from "./routes/root";
 import { initUserRoute } from "./routes/user";
 import { getSrategies } from "./strategies";
 
-export const getRouter = () => {
+export const getRouter = (application: Application): Router => {
   const router = express.Router();
 
   initLogoutRoute(router);
@@ -19,7 +20,12 @@ export const getRouter = () => {
     initLoginCallbackRoute(router, strategy);
   });
 
-  initRootRoute(router);
-
   return router;
+};
+
+export const initRouter = (application: Application) => {
+  const router = getRouter(application);
+
+  application.use(router);
+  initRootRoute(application);
 };

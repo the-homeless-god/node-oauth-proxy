@@ -1,9 +1,9 @@
-import express from "express";
+import express, { Application } from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import cors from "cors";
-import passport from "passport";
+import getRoutes from "express-list-endpoints";
 
 import {
   PORT,
@@ -12,26 +12,22 @@ import {
   SESSION_SECRET,
 } from "./utils/environment";
 import { SERVER_HAS_BEEN_HOSTED } from "./utils/dictionary";
-import { getRouter } from "./router";
+import { initRouter } from "./router";
+import { initPassport } from "./routes/middlewares/passport";
 
-const passportSerializer = (
-  user: unknown,
-  fn: (error: Error, user: unknown) => void
-) => fn(null, user);
-
-const configurateApplication = (app: express.Application) => {
-  app.use(
+const configurateApplication = (application: Application): Application => {
+  application.use(
     cors({
       origin: "*",
       credentials: true,
     })
   );
 
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+  application.use(bodyParser.json());
+  application.use(bodyParser.urlencoded({ extended: true }));
 
-  app.use(cookieParser());
-  app.use(
+  application.use(cookieParser());
+  application.use(
     session({
       name: SESSION_COOKIE,
       secret: SESSION_SECRET,
@@ -43,23 +39,15 @@ const configurateApplication = (app: express.Application) => {
     })
   );
 
-  app.use(passport.initialize());
-  app.use(passport.session());
+  initPassport(application);
+  initRouter(application);
 
-  passport.serializeUser(passportSerializer);
-  passport.deserializeUser(passportSerializer);
+  return application;
 };
 
 const application = express();
 
-configurateApplication(application);
-
-application.use(getRouter());
-
-console.info(require("express-list-endpoints")(application));
-
-application.listen(PORT, () => {
+configurateApplication(application).listen(PORT, () => {
   console.info(SERVER_HAS_BEEN_HOSTED);
+  console.info(getRoutes(application));
 });
-
-module.exports = application;

@@ -1,4 +1,4 @@
-import { Request, Router, Response } from "express";
+import { Request, Response, Application } from "express";
 
 import { TARGET } from "../utils/environment";
 import { proxify } from "../utils/proxy";
@@ -8,6 +8,6 @@ import { Routers } from "./types";
 export const root = (request: Request, response: Response) =>
   proxify(request, response, TARGET);
 
-export const initRootRoute = (router: Router) => {
-  router.get(Routers.root, isAuth, isValid, root);
+export const initRootRoute = (router: Application) => {
+  router.use(Routers.root, isAuth, isValid, root);
 };

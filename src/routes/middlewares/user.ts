@@ -1,5 +1,5 @@
 import { Request, Router, Response, NextFunction } from "express";
-import { Google } from "../../strategies/google";
+
 import { getStrategy, isUser } from "../../strategies/utils";
 import { NOT_ACCESS } from "../../utils/dictionary";
 
@@ -20,8 +20,6 @@ export const isValid = (
   response: Response,
   next: NextFunction
 ) => {
-  // TODO: add definition of provider into type
-  //@ts-ignore
   const strategy = getStrategy(request.user.provider);
 
   if (isUser(request.user, strategy)) {

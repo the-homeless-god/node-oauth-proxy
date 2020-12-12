@@ -1,4 +1,5 @@
 import { Request, Router, Response } from "express";
+
 import { Routers } from "./types";
 
 export const user = (request: Request, response: Response) => {
