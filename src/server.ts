@@ -47,7 +47,7 @@ const configurateApplication = (application: Application): Application => {
 
 const application = express();
 
-configurateApplication(application).listen(PORT, () => {
+configurateApplication(application).listen(PORT, (): void => {
   console.info(SERVER_HAS_BEEN_HOSTED);
   console.info(getRoutes(application));
 });

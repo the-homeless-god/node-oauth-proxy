@@ -1,7 +1,10 @@
-import { Request, Router, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
+import { getStrategies } from "../../strategies";
 
 import { getStrategy, isUser } from "../../strategies/utils";
-import { NOT_ACCESS } from "../../utils/dictionary";
+import { NOT_ACCESS, NOT_AUTH } from "../../utils/dictionary";
+import { FULL_URL } from "../../utils/environment";
+import { getAuthRoute } from "../utils";
 
 export const isAuth = (
   request: Request,
@@ -11,7 +14,13 @@ export const isAuth = (
   if (request.user) {
     next();
   } else {
-    response.sendStatus(401);
+    response.send(
+      NOT_AUTH(
+        getStrategies()
+          .map((strategy) => `${FULL_URL}${getAuthRoute(strategy.name)}`)
+          .join(", ")
+      )
+    );
   }
 };
 

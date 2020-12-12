@@ -1,6 +1,6 @@
 import { Request } from "express";
-import { getSrategies } from ".";
 
+import { getStrategies } from ".";
 import { allowedUsers, blockedUsers, PORT, URL } from "../utils/environment";
 import { Strategies, Strategy } from "./types";
 
@@ -15,7 +15,7 @@ export const callback = (
   done: (error: Error, profile: unknown) => void
 ) => done(null, profile);
 
-export const isUser = (user: unknown, strategy: Strategy) => {
+export const isUser = (user: unknown, strategy: Strategy): boolean => {
   const emails = strategy.parseProfileEmails(user);
 
   const isBlockedUser = emails.find((email) => blockedUsers.includes(email));
@@ -24,8 +24,8 @@ export const isUser = (user: unknown, strategy: Strategy) => {
   }
 
   const isAllowedUser = emails.find((email) => allowedUsers.includes(email));
-  return isAllowedUser;
+  return Boolean(isAllowedUser);
 };
 
 export const getStrategy = (name: string | Strategies): Strategy =>
-  getSrategies().find((strategy) => strategy.name === name);
+  getStrategies().find((strategy) => strategy.name === name);

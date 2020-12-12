@@ -1,6 +1,6 @@
-import { FULL_URL, PORT, TARGET } from "./environment";
+import { PORT, TARGET } from "./environment";
 
-export const NOT_AUTH = `Navigate to ${FULL_URL}`;
-export const NOT_ACCESS = "Access denied";
+export const NOT_AUTH = (url: string): string => `Navigate to ${url}`;
+export const NOT_ACCESS: string = "Access denied";
 
-export const SERVER_HAS_BEEN_HOSTED = `Proxy server has been hosted on ${PORT} port and will create a target to ${TARGET}`;
+export const SERVER_HAS_BEEN_HOSTED: string = `Proxy server has been hosted on ${PORT} port and will create a target to ${TARGET}`;

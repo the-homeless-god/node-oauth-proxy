@@ -5,15 +5,15 @@ import { initLoginCallbackRoute, initLoginRoute } from "./routes/login";
 import { initLogoutRoute } from "./routes/logout";
 import { initRootRoute } from "./routes/root";
 import { initUserRoute } from "./routes/user";
-import { getSrategies } from "./strategies";
+import { getStrategies } from "./strategies";
 
-export const getRouter = (application: Application): Router => {
+export const getRouter = (): Router => {
   const router = express.Router();
 
   initLogoutRoute(router);
   initUserRoute(router);
 
-  getSrategies().forEach((strategy) => {
+  getStrategies().forEach((strategy) => {
     passport.use(strategy.getPassportStrategy());
 
     initLoginRoute(router, strategy);
@@ -23,8 +23,8 @@ export const getRouter = (application: Application): Router => {
   return router;
 };
 
-export const initRouter = (application: Application) => {
-  const router = getRouter(application);
+export const initRouter = (application: Application): void => {
+  const router = getRouter();
 
   application.use(router);
   initRootRoute(application);

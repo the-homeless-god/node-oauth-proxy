@@ -24,12 +24,12 @@ export const blockedUsers: string[] = parseConfigUsers(
   getEnironmentKey("BLOCKED_USERS")
 );
 
-export const URL = getEnironmentKey("URL");
-export const PORT = getEnironmentKey("PORT");
-export const FULL_URL = `${URL}:${PORT}`;
+export const URL: string = getEnironmentKey("URL");
+export const PORT: string = getEnironmentKey("PORT");
+export const FULL_URL: string = `${URL}:${PORT}`;
 
-export const SESSION_COOKIE = getEnironmentKey("SESSION_COOKIE");
-export const SESSION_MAX_AGE = getEnironmentKey("SESSION_MAX_AGE");
-export const SESSION_SECRET = getEnironmentKey("SESSION_SECRET");
+export const SESSION_COOKIE: string = getEnironmentKey("SESSION_COOKIE");
+export const SESSION_MAX_AGE: string = getEnironmentKey("SESSION_MAX_AGE");
+export const SESSION_SECRET: string = getEnironmentKey("SESSION_SECRET");
 
-export const TARGET = getEnironmentKey("TARGET");
+export const TARGET: string = getEnironmentKey("TARGET");
