@@ -1,10 +1,11 @@
 import { Request } from "express";
+import { getSrategies } from ".";
 
 import { allowedUsers, blockedUsers, PORT, URL } from "../utils/environment";
-import { Strategy } from "./types";
+import { Strategies, Strategy } from "./types";
 
 export const getStrategyCallbackURL = (path: string): string =>
-  `${URL}:${PORT}/${path}`;
+  `${URL}:${PORT}${path}`;
 
 export const callback = (
   _request: Request,
@@ -25,3 +26,6 @@ export const isUser = (user: unknown, strategy: Strategy) => {
   const isAllowedUser = emails.find((email) => allowedUsers.includes(email));
   return isAllowedUser;
 };
+
+export const getStrategy = (name: string | Strategies): Strategy =>
+  getSrategies().find((strategy) => strategy.name === name);

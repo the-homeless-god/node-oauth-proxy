@@ -8,5 +8,10 @@ export const proxify = (
   response: Response,
   target: string
 ) => {
-  proxy.web(request, response, { target });
+  try {
+    proxy.web(request, response, { target });
+  } catch (err) {
+    console.error(err);
+    response.sendStatus(500);
+  }
 };
