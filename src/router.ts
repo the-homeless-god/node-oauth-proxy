@@ -1,31 +1,31 @@
-import express, { Application, Router } from "express";
-import passport from "passport";
+import express, { Application, Router } from 'express'
+import passport from 'passport'
 
-import { initLoginCallbackRoute, initLoginRoute } from "./routes/login";
-import { initLogoutRoute } from "./routes/logout";
-import { initRootRoute } from "./routes/root";
-import { initUserRoute } from "./routes/user";
-import { getStrategies } from "./strategies";
+import { initLoginCallbackRoute, initLoginRoute } from './routes/login'
+import { initLogoutRoute } from './routes/logout'
+import { initRootRoute } from './routes/root'
+import { initUserRoute } from './routes/user'
+import { getStrategies } from './strategies'
 
 export const getRouter = (): Router => {
-  const router = express.Router();
+  const router = express.Router()
 
-  initLogoutRoute(router);
-  initUserRoute(router);
+  initLogoutRoute(router)
+  initUserRoute(router)
 
   getStrategies().forEach((strategy) => {
-    passport.use(strategy.getPassportStrategy());
+    passport.use(strategy.getPassportStrategy())
 
-    initLoginRoute(router, strategy);
-    initLoginCallbackRoute(router, strategy);
-  });
+    initLoginRoute(router, strategy)
+    initLoginCallbackRoute(router, strategy)
+  })
 
-  return router;
-};
+  return router
+}
 
 export const initRouter = (application: Application): void => {
-  const router = getRouter();
+  const router = getRouter()
 
-  application.use(router);
-  initRootRoute(application);
-};
+  application.use(router)
+  initRootRoute(application)
+}

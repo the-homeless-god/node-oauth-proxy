@@ -1,15 +1,13 @@
-import { Application } from "express";
-import passport from "passport";
+import { Application } from 'express'
+import passport from 'passport'
+import { DoneFunction } from '../../strategies/types'
 
-const passportSerializer = (
-  user: unknown,
-  fn: (error: Error, user: unknown) => void
-) => fn(null, user);
+const passportSerializer = (user: unknown, fn: DoneFunction) => fn(null, user)
 
 export const initPassport = (application: Application): void => {
-  application.use(passport.initialize());
-  application.use(passport.session());
+  application.use(passport.initialize())
+  application.use(passport.session())
 
-  passport.serializeUser(passportSerializer);
-  passport.deserializeUser(passportSerializer);
-};
+  passport.serializeUser(passportSerializer)
+  passport.deserializeUser(passportSerializer)
+}

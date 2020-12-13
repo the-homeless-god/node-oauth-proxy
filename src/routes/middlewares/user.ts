@@ -1,39 +1,31 @@
-import { Request, Response, NextFunction } from "express";
-import { getStrategies } from "../../strategies";
+import { Request, Response, NextFunction } from 'express'
+import { getStrategies, getStrategy } from '../../strategies'
 
-import { getStrategy, isUser } from "../../strategies/utils";
-import { NOT_ACCESS, NOT_AUTH } from "../../utils/dictionary";
-import { FULL_URL } from "../../utils/environment";
-import { getAuthRoute } from "../utils";
+import { isUser } from '../../strategies/utils'
+import { NOT_ACCESS, NOT_AUTH } from '../../utils/dictionary'
+import { FULL_URL } from '../../utils/environment'
+import { getAuthRoute } from '../utils'
 
-export const isAuth = (
-  request: Request,
-  response: Response,
-  next: NextFunction
-) => {
+export const isAuth = (request: Request, response: Response, next: NextFunction): void => {
   if (request.user) {
-    next();
+    next()
   } else {
     response.send(
       NOT_AUTH(
         getStrategies()
           .map((strategy) => `${FULL_URL}${getAuthRoute(strategy.name)}`)
-          .join(", ")
-      )
-    );
+          .join(', '),
+      ),
+    )
   }
-};
+}
 
-export const isValid = (
-  request: Request,
-  response: Response,
-  next: NextFunction
-) => {
-  const strategy = getStrategy(request.user.provider);
+export const isValid = (request: Request, response: Response, next: NextFunction): void => {
+  const strategy = getStrategy(request.user.provider)
 
   if (isUser(request.user, strategy)) {
-    next();
+    next()
   } else {
-    response.send(NOT_ACCESS);
+    response.send(NOT_ACCESS)
   }
-};
+}

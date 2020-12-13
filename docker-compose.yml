@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+  production:
+    image: 9e3u2f0b1/node-oauth-proxy:latest
+    container_name: node-oauth-proxy-production
+    build:
+      context: .
+      dockerfile: docker/nodejs/Dockerfile.production
+    env_file: .env
+    environment:
+      URL: http://localhost
+      PORT: 8082
+      TARGET: http://localhost:9000
+    command: npm run start:production
+    restart: unless-stopped
+    networks:
+      - test-network
+    ports:
+      - 8082:8082
+
+  development:
+    image: 9e3u2f0b1/docker ps:latest
+    container_name: node-oauth-proxy-development
+    build:
+      context: .
+      dockerfile: docker/nodejs/Dockerfile.development
+    env_file: .env
+    environment:
+      URL: http://localhost
+      PORT: 8082
+      TARGET: http://localhost:9000
+    command: npm run start:development
+    restart: unless-stopped
+    networks:
+      - test-network
+    ports:
+      - 8082:8082
+
+networks:
+  test-network:
+    name: test-network
+    driver: bridge

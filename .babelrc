@@ -1,3 +1,13 @@
 {
-  "presets": ["env", "stage-0"]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    ["@babel/preset-typescript"]
+  ]
 }
