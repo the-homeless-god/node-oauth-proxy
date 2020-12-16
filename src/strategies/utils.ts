@@ -21,6 +21,10 @@ export const isUser = (user: unknown, strategy: Strategy): boolean => {
     return false
   }
 
-  const isAllowedUser = emails.find((email) => allowedUsers.includes(email))
-  return Boolean(isAllowedUser)
+  if (allowedUsers.length > 0) {
+    const isAllowedUser = emails.find((email) => allowedUsers.includes(email))
+    return Boolean(isAllowedUser)
+  }
+
+  return true
 }

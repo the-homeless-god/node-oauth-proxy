@@ -15,11 +15,28 @@ export const getEnironmentKey = (name: string): string => {
   throw error
 }
 
+const tryGetEnvironmentKey = (name: string): string | undefined => {
+  try {
+    const value = getEnironmentKey(name)
+    return value
+  } catch {
+    return undefined
+  }
+}
+
 const parseConfigUsers = (config: string): string[] => config.split(';')
 
-export const allowedUsers: string[] = parseConfigUsers(getEnironmentKey('ALLOWED_USERS'))
+const getEnvironmentUsers = (key: string): string[] => {
+  const value = tryGetEnvironmentKey(key)
+  if (value) {
+    return parseConfigUsers(value)
+  }
 
-export const blockedUsers: string[] = parseConfigUsers(getEnironmentKey('BLOCKED_USERS'))
+  return []
+}
+
+export const allowedUsers: string[] = getEnvironmentUsers('ALLOWED_USERS')
+export const blockedUsers: string[] = getEnvironmentUsers('BLOCKED_USERS')
 
 export const URL: string = getEnironmentKey('URL')
 export const PORT: string = getEnironmentKey('PORT')
