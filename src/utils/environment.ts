@@ -40,6 +40,7 @@ export const blockedUsers: string[] = getEnvironmentUsers('BLOCKED_USERS')
 
 export const URL: string = getEnironmentKey('URL')
 export const PORT: string = getEnironmentKey('PORT')
+export const PUBLIC_URL: string = getEnironmentKey('PUBLIC_URL')
 export const FULL_URL = `${URL}:${PORT}`
 
 export const SESSION_COOKIE: string = getEnironmentKey('SESSION_COOKIE')
