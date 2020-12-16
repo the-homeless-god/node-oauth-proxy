@@ -28,7 +28,9 @@ GOOGLE_CLIENT_SECRET
 
 # Lists of users that can be applied or declined by auth
 # separate emails by ;
-ALLOWED_USERS="user2@mail.com;nosome@mail.com"
+# empty ALLOWED_USERS means that all users that in not BLOCKED_USERS will be accepted
+# empty BLOCKED_USERS means that no users will be blocked
+ALLOWED_USERS="user1@mail.com;some@mail.com"
 BLOCKED_USERS="user2@mail.com;nosome@mail.com"
 
 # Endpoint that will be proxied
