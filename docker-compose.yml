@@ -6,7 +6,7 @@ services:
     container_name: node-oauth-proxy-production
     build:
       context: .
-      dockerfile: docker/nodejs/Dockerfile.production
+      dockerfile: Dockerfile
     env_file: .env
     environment:
       URL: http://localhost
@@ -24,7 +24,7 @@ services:
     container_name: node-oauth-proxy-development
     build:
       context: .
-      dockerfile: docker/nodejs/Dockerfile.development
+      dockerfile: Dockerfile.development
     env_file: .env
     environment:
       URL: http://localhost
