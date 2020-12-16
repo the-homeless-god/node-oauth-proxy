@@ -1,0 +1,8 @@
+.env
+.gitignore
+node_modules
+npm-debug.log
+docker
+template.env
+README.md
+.eslintcache

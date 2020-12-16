@@ -1,0 +1,15 @@
+on:
+  pull_request:
+    branches:
+      - master
+name: linters and tests
+jobs:
+  build:
+    name: linters
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
