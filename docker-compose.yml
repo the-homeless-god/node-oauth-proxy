@@ -12,6 +12,7 @@ services:
       URL: http://localhost
       PORT: 8082
       TARGET: http://localhost:9000
+      PUBLIC_URL: http://localhost:8082
     command: npm run start:production
     restart: unless-stopped
     networks:
@@ -29,6 +30,7 @@ services:
     environment:
       URL: http://localhost
       PORT: 8082
+      PUBLIC_URL: http://localhost:8082
       TARGET: http://localhost:9000
     command: npm run start:development
     restart: unless-stopped

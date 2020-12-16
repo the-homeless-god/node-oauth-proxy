@@ -12,9 +12,14 @@ Simple example of proxy server at Node.js with pre-authorisation like Cloudflare
 # Configuration by environment or docker variables
 
 ```shell
-# Url and port for your proxy-server, can be simply 'localhost'
-URL
-PORT
+# URL - local url of service
+# PORT - local port of service
+# PUBLIC_URL - public url that will be used for redirect by OAuth
+# TARGET - url for endpoint that will be proxied
+URL="localhost"
+PORT="8080"
+PUBLIC_URL="domain.name"
+TARGET="http://127.0.0.1:9000"
 
 # Name, time of life in ms, secret to sign for cookie that will respond for session
 SESSION_COOKIE
@@ -32,7 +37,4 @@ GOOGLE_CLIENT_SECRET
 # empty BLOCKED_USERS means that no users will be blocked
 ALLOWED_USERS="user1@mail.com;some@mail.com"
 BLOCKED_USERS="user2@mail.com;nosome@mail.com"
-
-# Endpoint that will be proxied
-TARGET="http://127.0.0.1:9000"
 ```

@@ -3,7 +3,7 @@ import { getStrategies, getStrategy } from '../../strategies'
 
 import { isUser } from '../../strategies/utils'
 import { NOT_ACCESS, NOT_AUTH } from '../../utils/dictionary'
-import { FULL_URL } from '../../utils/environment'
+import { PUBLIC_URL } from '../../utils/environment'
 import { getAuthRoute } from '../utils'
 
 export const isAuth = (request: Request, response: Response, next: NextFunction): void => {
@@ -13,7 +13,7 @@ export const isAuth = (request: Request, response: Response, next: NextFunction)
     response.send(
       NOT_AUTH(
         getStrategies()
-          .map((strategy) => `${FULL_URL}${getAuthRoute(strategy.name)}`)
+          .map((strategy) => `${PUBLIC_URL}${getAuthRoute(strategy.name)}`)
           .join(', '),
       ),
     )

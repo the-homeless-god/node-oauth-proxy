@@ -1,9 +1,9 @@
 import { Request } from 'express'
 
-import { allowedUsers, blockedUsers, PORT, URL } from '../utils/environment'
+import { allowedUsers, blockedUsers, PUBLIC_URL } from '../utils/environment'
 import { DoneFunction, Strategy } from './types'
 
-export const getStrategyCallbackURL = (path: string): string => `${URL}:${PORT}${path}`
+export const getStrategyCallbackURL = (path: string): string => `${PUBLIC_URL}${path}`
 
 export const callback = (
   _request: Request,
