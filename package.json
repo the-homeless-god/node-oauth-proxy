@@ -1,6 +1,6 @@
 {
   "name": "node-oauth-proxy",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Simple server to proxy with oAuth",
   "main": "dist/server.js",
   "scripts": {
