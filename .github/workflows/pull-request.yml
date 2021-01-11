@@ -2,10 +2,10 @@ on:
   pull_request:
     branches:
       - master
-name: linters and tests
+name: validation of code
 jobs:
   build:
-    name: linters
+    name: linters, tests and build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
