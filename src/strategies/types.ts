@@ -18,3 +18,9 @@ export interface Strategy {
 }
 
 export type DoneFunction = (error: Error, data: unknown) => void
+
+export interface EmailConfiguration {
+  allowedDomains: string[]
+  allowedUsers: string[]
+  blockedUsers: string[]
+}

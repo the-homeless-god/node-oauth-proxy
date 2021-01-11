@@ -35,6 +35,7 @@ const getEnvironmentUsers = (key: string): string[] => {
   return []
 }
 
+export const allowedDomains: string[] = getEnvironmentUsers('ALLOWED_DOMAINS')
 export const allowedUsers: string[] = getEnvironmentUsers('ALLOWED_USERS')
 export const blockedUsers: string[] = getEnvironmentUsers('BLOCKED_USERS')
 

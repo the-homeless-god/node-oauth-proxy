@@ -2,14 +2,16 @@ on:
   pull_request:
     branches:
       - master
-name: linters and tests
+name: validation of code
 jobs:
   build:
-    name: linters
+    name: linters, tests and build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      - run: cp template.env .env
       - run: npm ci
       - run: npm run check
+      - run: npm run test
       - run: npm run build

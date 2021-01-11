@@ -9,7 +9,7 @@ Simple example of proxy server at Node.js with pre-authorisation like Cloudflare
 - Express.js
 - TypeScript
 
-# Configuration by environment or docker variables
+## Configuration by environment or docker variables
 
 ```shell
 # URL - local url of service
@@ -36,5 +36,6 @@ GOOGLE_CLIENT_SECRET
 # empty ALLOWED_USERS means that all users that in not BLOCKED_USERS will be accepted
 # empty BLOCKED_USERS means that no users will be blocked
 ALLOWED_USERS="user1@mail.com;some@mail.com"
+ALLOWED_DOMAINS="domain.com;mail.com"
 BLOCKED_USERS="user2@mail.com;nosome@mail.com"
 ```

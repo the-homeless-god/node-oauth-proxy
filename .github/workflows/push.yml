@@ -3,16 +3,18 @@ on:
     branches:
       - master
 
-name: build and publish
+name: publish a new version
 jobs:
   build-and-publish:
-    name: build and publish
+    name: lint, test, build and publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - run: npm ci
+      - run: cp template.env .env
       - run: npm run check
+      - run: npm run test
       - run: npm run build
       - name: set up QEMU
         uses: docker/setup-qemu-action@v1
