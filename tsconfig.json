@@ -13,7 +13,7 @@
     "emitDeclarationOnly": true,
     "target": "ESNEXT",
     "typeRoots": ["typings"],
-    "types": ["node", "express"],
+    "types": ["node", "express", "@types/mocha"],
     "skipLibCheck": true,
     "sourceMap": false,
     "outDir": "dist"
