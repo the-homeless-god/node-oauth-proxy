@@ -11,7 +11,11 @@ export const callback = (
   _refreshToken: string,
   profile: unknown,
   done: DoneFunction,
-): void => done(null, profile)
+): void => {
+  console.info(_accessToken, _refreshToken)
+
+  return done(null, profile)
+}
 
 export const isValidDomain = (domain: string, email: string): boolean => {
   if (domain.length === 0) {
