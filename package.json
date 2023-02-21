@@ -41,7 +41,7 @@
     "@babel/core": "^7.14.2",
     "@babel/node": "^7.14.7",
     "@babel/preset-env": "^7.14.2",
-    "@babel/preset-typescript": "^7.13.0",
+    "@babel/preset-typescript": "^7.21.0",
     "@types/chai": "^4.2.21",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.10",
